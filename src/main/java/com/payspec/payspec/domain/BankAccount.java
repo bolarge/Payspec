@@ -1,6 +1,6 @@
 package com.payspec.payspec.domain;
 
-import com.payspec.payspec.domain.base.AccountParent;
+import com.payspec.payspec.domain.base.Account;
 import com.payspec.payspec.service.api.model.IBankAccount;
 
 import java.io.Serializable;
@@ -11,21 +11,7 @@ import javax.persistence.*;
 
 @Entity(name = "SavingsAccount")
 @DiscriminatorValue(value = "1")
-public class BankAccount extends AccountParent implements IBankAccount<User>, Serializable {
-	
-    public BankAccount() {
-        super();
-    }
-
-    public BankAccount(String accountNumber, String bvn, User user) {
-    	super(accountNumber, bvn, user);
-    }
-
-    public BankAccount(String bankVerificationNumber, int balanceAmount, Date lastTransactionTimestamp,
-			String accountNumber, Date creationDate, String active, boolean enabled, String accountType, User user) {
-		super(bankVerificationNumber, balanceAmount, lastTransactionTimestamp, accountNumber, creationDate, active, enabled,
-				accountType, user);
-	}
+public class BankAccount extends Account implements IBankAccount<Person>{
 
 	@Override
     public String getAccountNumber() {
@@ -37,11 +23,11 @@ public class BankAccount extends AccountParent implements IBankAccount<User>, Se
         this.accountNumber = accountNumber;
     }
 
-    public User getUser() {
+    public Person getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Person user) {
         this.user = user;
     }
 

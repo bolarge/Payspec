@@ -1,7 +1,7 @@
-package com.payspec.payspec.service.service;
+package com.payspec.payspec.service.api.service;
 
-import com.payspec.payspec.service.exception.QuaspecServiceException;
-import com.payspec.payspec.service.model.IBankAccount;
+import com.payspec.payspec.service.api.exception.QuaspecServiceException;
+import com.payspec.payspec.service.api.model.IBankAccount;
 
 import java.util.List;
 

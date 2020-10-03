@@ -2,7 +2,7 @@ package com.payspec.payspec.service.api.model;
 
 import java.util.Collection;
 
-public interface IOrganization<T extends IProduct> {
+public interface IOrganization { //<T extends IProduct>
 
 	String getName();
 	
@@ -16,8 +16,8 @@ public interface IOrganization<T extends IProduct> {
 	
 	void setPhoneNumber(String phoneNumber);
 	
-	Collection<T> getProducts();
+/*	Collection<T> getProducts();
 	
-	void setProducts(Collection<T> products);
+	void setProducts(Collection<T> products);*/
 
 }

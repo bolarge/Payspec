@@ -4,27 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.payspec.payspec.domain.Institution;
 import com.payspec.payspec.domain.Organization;
@@ -35,33 +15,28 @@ import com.payspec.payspec.service.api.enums.*;
 @Table(name = "user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type")
-public abstract class UserParent {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	protected Long id;
+public abstract class User extends BaseEntity{
 	
 	@Column(name = "version")
 	protected int version;
 	
-	@Column(name = "last_name", length = 15)
+	@Column(name = "last_name")
 	protected String lastName;
 	
-	@Column(name = "first_name", length = 15)
+	@Column(name = "first_name")
 	protected String firstName;
 	
-	@Column(name = "middle_name", length = 15)
+	@Column(name = "middle_name")
 	protected String middleName;
 	
 	@Column(name = "birth_date")
 	@Temporal(TemporalType.DATE)
 	protected Date birthDate;
 	
-	@Column(name = "email", unique = true, nullable = false, length = 45)
+	@Column(name = "email")
 	protected String email;
 	
-	@Column(name = "username", unique = true, nullable = false, length = 25)
+	@Column(name = "username")
 	protected String userName;
 	
 	@Column(name = "gender")
@@ -71,21 +46,16 @@ public abstract class UserParent {
 	@Column(name = "password", length = 100)
 	protected String password;
 	
-	@Basic(fetch = FetchType.LAZY)
-	@Lob
-	@Column(name = "photo")
-	protected byte[] photo;
-	
 	@Column(name="profile_pic")
 	protected String profilePicture = "/static/images/avatar.png";
 	
 	@Column(name = "enabled")
 	protected boolean enabled = true;
 	
-	@Column(name = "question", length = 25)
+	@Column(name = "question")
 	protected String securityQuestion;
 	
-	@Column(name = "answer", length = 25)
+	@Column(name = "answer")
 	protected String securityAnswer;	
 	
 	@Column(name="base_url")
@@ -117,48 +87,25 @@ public abstract class UserParent {
 	@Column(name = "u_type")
 	protected String userType;
 	
-	@Column(name = "merchant_id")
-	protected String merchantId;
-	
-	@Column(name = "paychant_id")
-	protected String paychantId;
-	
 	@Column(name = "employeeId")
 	protected String employeeId;
 	
 	@Column(name = "national_id")
 	protected String nationalId;
+
+	//Relationships
 	
 	@ManyToMany(fetch=FetchType.EAGER, targetEntity = Profile.class)
 	@JoinTable(name = "user_profile",
 			joinColumns = { @JoinColumn(name = "user_id") },
 			inverseJoinColumns = { @JoinColumn(name = "profile_id") })
 	protected Collection<Profile> profiles = new HashSet<Profile>();
-    
-    @OneToMany(mappedBy="paychant") 	//fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true
-    protected Collection<PaymentParent> payerPayments = new HashSet<PaymentParent>();
-    
-    @OneToMany(mappedBy="merchant")		//fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true
-    protected Collection<PaymentParent> payeePayments = new HashSet<PaymentParent>();
-    
-	public UserParent() {}
-	
-	public UserParent(String userName, String email, String password, String gsmPhoneNumber, String nationalId, Organization organization) {
-		this.userName = userName;
-		this.email = email;
-		this.password = password;
-		this.gsmPhoneNumber = gsmPhoneNumber;
-		this.nationalId = nationalId;
-		this.organization = organization;
-	}
-	
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "buyer", fetch = FetchType.LAZY)
+    protected Collection<Payment> userInvoices = new HashSet<>();
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "seller", fetch = FetchType.LAZY)
+    protected Collection<Payment> userReceipts = new HashSet<Payment>();
 
 	public int getVersion() {
 		return version;
@@ -230,14 +177,6 @@ public abstract class UserParent {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public byte[] getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
 	}
 
 	public boolean isEnabled() {
@@ -335,22 +274,6 @@ public abstract class UserParent {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
-
-	public String getMerchantId() {
-		return merchantId;
-	}
-
-	public void setMerchantId(String merchantId) {
-		this.merchantId = merchantId;
-	}
-
-	public String getPaychantId() {
-		return paychantId;
-	}
-
-	public void setPaychantId(String paychantId) {
-		this.paychantId = paychantId;
-	}
 	
 	public String getEmployeeId() {
 		return employeeId;
@@ -376,50 +299,19 @@ public abstract class UserParent {
 		this.nationalId = nationalId;
 	}
 
-	public Collection<PaymentParent> getPayerPayments() {
-		return payerPayments;
+	public Collection<Payment> getUserInvoices() {
+		return userInvoices;
 	}
 
-	public void setPayerPayments(Collection<PaymentParent> payerPayments) {
-		this.payerPayments = payerPayments;
+	public void setUserInvoices(Collection<Payment> userInvoices) {
+		this.userInvoices = userInvoices;
 	}
 
-	public Collection<PaymentParent> getPayeePayments() {
-		return payeePayments;
+	public Collection<Payment> getUserReceipts() {
+		return userReceipts;
 	}
 
-	public void setPayeePayments(Collection<PaymentParent> payeePayments) {
-		this.payeePayments = payeePayments;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((gsmPhoneNumber == null) ? 0 : gsmPhoneNumber.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserParent other = (UserParent) obj;
-		if (gsmPhoneNumber == null) {
-			if (other.gsmPhoneNumber != null)
-				return false;
-		} else if (!gsmPhoneNumber.equals(other.gsmPhoneNumber))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public void setUserReceipts(Collection<Payment> userReceipts) {
+		this.userReceipts = userReceipts;
 	}
 }

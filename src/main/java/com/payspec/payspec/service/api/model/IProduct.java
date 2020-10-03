@@ -1,6 +1,6 @@
 package com.payspec.payspec.service.api.model;
 
-public interface IProduct<T extends IOrganization> extends Payable {
+public interface IProduct { //<T extends IOrganization>
 
 	String getProductId();
 	
@@ -14,12 +14,8 @@ public interface IProduct<T extends IOrganization> extends Payable {
 	
 	void setDescription(String description);
 	
-	T getOrganization();
+	//T getOrganization();
 	
-	void setOrganization(T organization);
-	
-	Integer getProductClass();
-	
-	void setProductClass(Integer productClass);
-		
+	//void setOrganization(T organization);
+
 }

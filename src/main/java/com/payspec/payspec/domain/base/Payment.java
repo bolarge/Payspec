@@ -11,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -22,21 +19,15 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.payspec.payspec.domain.Product;
-import com.payspec.payspec.domain.User;
+import com.payspec.payspec.domain.Good;
+import com.payspec.payspec.domain.Person;
 import com.payspec.payspec.service.api.enums.*;
-
 
 @Entity(name = "PaymentParent")
 @Table(name = "payment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "p_type")
-public abstract class PaymentParent {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	protected Long id;
+public abstract class Payment extends BaseEntity{
 
 	@Column(name = "payment_id")
 	protected String paymentId;
@@ -54,12 +45,12 @@ public abstract class PaymentParent {
 	protected Date paymentDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "payer", referencedColumnName = "id", nullable = false)
-	protected User paychant;
+	@JoinColumn(name = "buyer_id")
+	protected Person buyer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "payee", referencedColumnName = "id", nullable = false)
-	protected User merchant;
+	@JoinColumn(name = "seller")
+	protected Person seller;
 
 	@Enumerated(EnumType.STRING)
 	protected PaymentStatus paymentStatus;
@@ -71,72 +62,22 @@ public abstract class PaymentParent {
 	@JoinTable(name = "payment_product_association", 
 			joinColumns = @JoinColumn(name = "payment_id"),
 			inverseJoinColumns = @JoinColumn(name="product_id"))
+	protected Collection<Good> products = new ArrayList<Good>();
 
-	protected Collection<Product> products = new ArrayList<Product>(); //change to boughtItems
-
-	public PaymentParent() {}
-
-	public PaymentParent(String paymentId, BigDecimal amount, Double paymentCharge, String paymentDescription, Collection<Product> product,
-			Date paymentDate, User paychant, User merchant, PaymentType paymentType, PaymentStatus paymentStatus) {
-		this.paymentId = paymentId;
-		this.amount = amount;
-		this.paymentCharge = paymentCharge;
-		this.paymentDescription = paymentDescription;
-		this.products = product;
-		this.paymentDate = paymentDate;
-		this.paychant = paychant;
-		this.merchant = merchant;
-		//this.paymentType = paymentType;
-		//this.paymentStatus = paymentStatus;
-	}
-	
-	public PaymentParent(String paymentId, BigDecimal amount, Double paymentCharge, String paymentDescription,
-			Date paymentDate, User paychant, User merchant, PaymentType paymentType, PaymentStatus paymentStatus) {
-		this.paymentId = paymentId;
-		this.amount = amount;
-		this.paymentCharge = paymentCharge;
-		this.paymentDescription = paymentDescription;
-		this.paymentDate = paymentDate;
-		this.paychant = paychant;
-		this.merchant = merchant;
-		//this.paymentType. = paymentType;
-		//this.paymentStatus = paymentStatus;
+	public Person getBuyer() {
+		return buyer;
 	}
 
-	public PaymentParent(String paymentId, BigDecimal amount, String paymentDescription, User paychant, User merchant,
-			PaymentType paymentType, PaymentStatus paymentStatus) {
-		super();
-		this.paymentId = paymentId;
-		this.amount = amount;
-		this.paymentDescription = paymentDescription;
-		this.paychant = paychant;
-		this.merchant = merchant;
-		//this.paymentType = paymentType;
-		//this.paymentStatus = paymentStatus;
+	public void setBuyer(Person buyer) {
+		this.buyer = buyer;
 	}
 
-	public Long getId() {
-		return id;
+	public Person getSeller() {
+		return seller;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public User getPaychant() {
-		return paychant;
-	}
-
-	public void setPaychant(User paychant) {
-		this.paychant = paychant;
-	}
-
-	public User getMerchant() {
-		return merchant;
-	}
-
-	public void setMerchant(User merchant) {
-		this.merchant = merchant;
+	public void setSeller(Person seller) {
+		this.seller = seller;
 	}
 
 	public BigDecimal getAmount() {
@@ -167,10 +108,6 @@ public abstract class PaymentParent {
 		return paymentStatus;
 	}
 
-	/*public void setPaymentStatus(PaymentStatus paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}*/
-
 	public String getPaymentId() {
 		return paymentId;
 	}
@@ -187,11 +124,11 @@ public abstract class PaymentParent {
 		this.paymentCharge = paymentCharge;
 	}
 
-	public Collection<Product> getProducts() {
+	public Collection<Good> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Collection<Product> products) {
+	public void setProducts(Collection<Good> products) {
 		this.products = products;
 	}
 
@@ -199,10 +136,6 @@ public abstract class PaymentParent {
 		return paymentType;
 	}
 
-	/*public void setPaymentType(PaymentType paymentType) {
-		this.paymentType = paymentType;
-	}
-*/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -220,7 +153,7 @@ public abstract class PaymentParent {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PaymentParent other = (PaymentParent) obj;
+		Payment other = (Payment) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

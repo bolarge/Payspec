@@ -7,39 +7,23 @@ import java.util.Date;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.payspec.payspec.domain.base.UserParent;
+import com.payspec.payspec.domain.base.User;
 import com.payspec.payspec.service.api.model.IOrganization;
 import com.payspec.payspec.service.api.model.IUser;
 import com.payspec.payspec.service.api.enums.*;
 
 @Entity(name = "Customer")
 @DiscriminatorValue(value = "1")
-public class User extends UserParent implements IUser<IOrganization>, Serializable {
+public class Person extends User implements IUser<IOrganization>{
 	
 	private String userType;
-	
-	public User() {
-		super();
-	}
-	
-	public User(String userName, String email, String password, String gsmPhoneNumber, String nationalId, Organization organization) {
-		super(userName, email, password, gsmPhoneNumber, nationalId, organization);
-	}
-	
+
 	public String getUserType() {
 		return userType;
 	}
 
 	public void setUserType(String userType) {
 		this.userType = userType;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public int getVersion() {
@@ -112,14 +96,6 @@ public class User extends UserParent implements IUser<IOrganization>, Serializab
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public byte[] getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
 	}
 
 	public boolean isEnabled() {
@@ -215,28 +191,10 @@ public class User extends UserParent implements IUser<IOrganization>, Serializab
 	}
 
 	@Override
-	public void setOrganization(IOrganization organization) {
-
-	}
+	public void setOrganization(IOrganization organization) { }
 
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
-	}
-
-	public String getMerchantId() {
-		return merchantId;
-	}
-
-	public void setMerchantId(String merchantId) {
-		this.merchantId = merchantId;
-	}
-
-	public String getPaychantId() {
-		return paychantId;
-	}
-
-	public void setPaychantId(String paychantId) {
-		this.paychantId = paychantId;
 	}
 
 	@Override

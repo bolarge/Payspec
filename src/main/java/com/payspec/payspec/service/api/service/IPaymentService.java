@@ -1,8 +1,8 @@
-package com.payspec.payspec.service.service;
+package com.payspec.payspec.service.api.service;
 
-import com.quatspec.api.exception.QuaspecServiceException;
-import com.quatspec.api.model.IInvoice;
-import com.quatspec.api.model.IPayment;
+import com.payspec.payspec.service.api.exception.QuaspecServiceException;
+import com.payspec.payspec.service.api.model.IInvoice;
+import com.payspec.payspec.service.api.model.IPayment;
 
 import java.util.List;
 

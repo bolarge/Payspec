@@ -1,18 +1,15 @@
 package com.payspec.payspec.domain;
 
+import com.payspec.payspec.domain.base.BaseEntity;
 import com.payspec.payspec.service.api.model.IOrganization;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,12 +17,7 @@ import javax.persistence.Table;
 
 @Entity(name="Organization")
 @Table(name="organization")
-public class Organization implements IOrganization<Product>{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    protected Long id;
+public class Organization extends BaseEntity implements IOrganization{
 
     @Column(name="name")
     protected String name;
@@ -34,9 +26,6 @@ public class Organization implements IOrganization<Product>{
     @JoinColumn(name="institution_id")
     protected Institution institution;
 
-    @Column(name="email")
-    protected String email;
-
     @Column(name="phone_number")
     protected String phoneNumber;
 
@@ -44,26 +33,7 @@ public class Organization implements IOrganization<Product>{
     protected boolean status = false;	
 
     @OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
-    protected Collection<Product> products = new HashSet<Product>();
-   
-    public Organization(){
-    	super();
-    }
-
-    public Organization(String name, String email, String phoneNumber) {
-		super();
-		this.name = name;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-	}
-
-	public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    protected Collection<Good> products = new HashSet<Good>();
 
     public String getName() {
         return name;
@@ -93,10 +63,6 @@ public class Organization implements IOrganization<Product>{
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
     public Institution getInstitution() {
         return institution;
     }
@@ -105,11 +71,11 @@ public class Organization implements IOrganization<Product>{
         this.institution = institution;
     }
 
-    public Collection<Product> getProducts() {
+    public Collection<Good> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Collection<Product> products) {
+	public void setProducts(Collection<Good> products) {
 		this.products.addAll(products);
 	}
 

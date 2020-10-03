@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @Entity(name = "Employee")
 @DiscriminatorValue(value = "2")
-public class Employee extends User{
+public class Employee extends Person {
 	
 	@Column(name="employee_id", unique = true)
 	private String employeeId;
@@ -21,14 +21,6 @@ public class Employee extends User{
 	
 	@Column(name="vacation")
 	private Integer vacation;
-	
-	public Employee() {
-		super();
-	}
-	
-	public Employee(String userName, String email, String password, String gsmPhoneNumber, String nationalId, Organization organization) {
-		super(userName, email, password, gsmPhoneNumber, nationalId, organization);
-	}
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -41,6 +33,7 @@ public class Employee extends User{
 	public BigDecimal getSalary() {
 		return salary;
 	}
+
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
@@ -48,6 +41,7 @@ public class Employee extends User{
 	public Long getPension() {
 		return pension;
 	}
+
 	public void setPension(Long pension) {
 		this.pension = pension;
 	}

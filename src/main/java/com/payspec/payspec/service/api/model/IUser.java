@@ -47,10 +47,6 @@ public interface IUser<T extends IOrganization>  {
 
 	void setPassword(String password);
 
-	byte[] getPhoto();
-
-	void setPhoto(byte[] photo);
-
 	boolean isEnabled();
 
 	void setEnabled(boolean enabled);
@@ -93,14 +89,6 @@ public interface IUser<T extends IOrganization>  {
 	
 	void setUserType(String userType);
 	
-	String getMerchantId();
-	
-	void setMerchantId(String merchantId);
-	
-	String getPaychantId();
-	
-	void setPaychantId(String paychantId);
-	
 	Collection getProfiles();	
 	
 	T getOrganization();
@@ -110,9 +98,5 @@ public interface IUser<T extends IOrganization>  {
 	String getNationalId();
 	
 	void setNationalId(String nationalId);
-	
-	//T getIProfile();
-	
-	//void setIProfile(T profile);
 	
 }
