@@ -1,6 +1,6 @@
 package com.payspec.payspec.domain.base;
 
-import com.payspec.payspec.domain.Person;
+import com.payspec.payspec.domain.Customer;
 
 import java.util.Date;
 
@@ -8,9 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -49,7 +46,7 @@ public abstract class Account extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
-    protected Person user;
+    protected Customer user;
 
 	public String getAccountNumber() {
         return accountNumber;
@@ -67,11 +64,11 @@ public abstract class Account extends BaseEntity {
 		this.id = accountId;
 	}
 
-	public Person getUser() {
+	public Customer getUser() {
 		return user;
 	}
 
-	public void setUser(Person user) {
+	public void setUser(Customer user) {
 		this.user = user;
 	}
 

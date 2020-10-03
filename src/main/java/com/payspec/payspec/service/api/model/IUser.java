@@ -3,8 +3,6 @@ package com.payspec.payspec.service.api.model;
 import java.util.Collection;
 import java.util.Date;
 
-//import com.payspec.payspec.service.api.enums.Gender;
-
 public interface IUser<T extends IOrganization>  {
 	
 	Long getId();

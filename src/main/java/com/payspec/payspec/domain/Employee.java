@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @Entity(name = "Employee")
 @DiscriminatorValue(value = "2")
-public class Employee extends Person {
+public class Employee extends Customer {
 	
 	@Column(name="employee_id", unique = true)
 	private String employeeId;

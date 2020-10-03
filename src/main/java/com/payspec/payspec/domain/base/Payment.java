@@ -19,8 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.payspec.payspec.domain.Customer;
 import com.payspec.payspec.domain.Good;
-import com.payspec.payspec.domain.Person;
 import com.payspec.payspec.service.api.enums.*;
 
 @Entity(name = "PaymentParent")
@@ -46,11 +46,11 @@ public abstract class Payment extends BaseEntity{
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "buyer_id")
-	protected Person buyer;
+	protected Customer buyer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "seller")
-	protected Person seller;
+	protected Customer seller;
 
 	@Enumerated(EnumType.STRING)
 	protected PaymentStatus paymentStatus;
@@ -64,19 +64,19 @@ public abstract class Payment extends BaseEntity{
 			inverseJoinColumns = @JoinColumn(name="product_id"))
 	protected Collection<Good> products = new ArrayList<Good>();
 
-	public Person getBuyer() {
+	public Customer getBuyer() {
 		return buyer;
 	}
 
-	public void setBuyer(Person buyer) {
+	public void setBuyer(Customer buyer) {
 		this.buyer = buyer;
 	}
 
-	public Person getSeller() {
+	public Customer getSeller() {
 		return seller;
 	}
 
-	public void setSeller(Person seller) {
+	public void setSeller(Customer seller) {
 		this.seller = seller;
 	}
 

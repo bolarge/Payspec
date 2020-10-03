@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity(name = "SavingsAccount")
 @DiscriminatorValue(value = "1")
-public class BankAccount extends Account implements IBankAccount<Person>{
+public class BankAccount extends Account implements IBankAccount<Customer>{
 
 	@Override
     public String getAccountNumber() {
@@ -23,11 +23,11 @@ public class BankAccount extends Account implements IBankAccount<Person>{
         this.accountNumber = accountNumber;
     }
 
-    public Person getUser() {
+    public Customer getUser() {
         return user;
     }
 
-    public void setUser(Person user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 

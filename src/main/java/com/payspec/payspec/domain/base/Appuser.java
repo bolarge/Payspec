@@ -11,11 +11,10 @@ import com.payspec.payspec.domain.Organization;
 import com.payspec.payspec.domain.Profile;
 import com.payspec.payspec.service.api.enums.*;
 
-@Entity(name = "User")
-@Table(name = "user")
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_type")
-public abstract class User extends BaseEntity{
+public abstract class Appuser extends BaseEntity{
 	
 	@Column(name = "version")
 	protected int version;

@@ -1,20 +1,19 @@
 package com.payspec.payspec.domain;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import com.payspec.payspec.domain.base.User;
+import com.payspec.payspec.domain.base.Appuser;
 import com.payspec.payspec.service.api.model.IOrganization;
 import com.payspec.payspec.service.api.model.IUser;
 import com.payspec.payspec.service.api.enums.*;
 
 @Entity(name = "Customer")
 @DiscriminatorValue(value = "1")
-public class Person extends User implements IUser<IOrganization>{
+public class Customer extends Appuser implements IUser<IOrganization>{
 	
 	private String userType;
 
