@@ -1,7 +1,5 @@
 package com.payspec.payspec.domain;
 
-import com.payspec.payspec.domain.model.User;
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,7 +44,7 @@ public abstract class AbstractAccount extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
-    protected User user;
+    protected AbstractUser user;
 
 	public String getAccountNumber() {
         return accountNumber;
@@ -64,11 +62,11 @@ public abstract class AbstractAccount extends BaseEntity {
 		this.id = accountId;
 	}
 
-	public User getUser() {
+	public AbstractUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(AbstractUser user) {
 		this.user = user;
 	}
 

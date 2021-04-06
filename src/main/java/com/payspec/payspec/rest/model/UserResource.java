@@ -2,11 +2,10 @@ package com.payspec.payspec.rest.model;
 
 import com.payspec.payspec.domain.api.IUser;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
-public class UserResource extends DefaultResource implements IUser {
+public class UserResource implements IUser {
 
 	private String userName;
 
@@ -19,10 +18,6 @@ public class UserResource extends DefaultResource implements IUser {
 	private String password;
 
 	private String nationalId;
-
-	private OrganizationResource iOrganization;
-
-	private Collection<ProductResource> products = new ArrayList<ProductResource>();
 
     public UserResource() {
         super();

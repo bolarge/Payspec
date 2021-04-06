@@ -1,3 +1,4 @@
+/*
 package com.payspec.payspec.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -51,3 +52,4 @@ public class LoginResource {
         this.loggedIn = loggedIn;
     }
 }
+*/

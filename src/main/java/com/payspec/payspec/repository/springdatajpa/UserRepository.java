@@ -1,12 +1,11 @@
 package com.payspec.payspec.repository.springdatajpa;
 
 import com.payspec.payspec.domain.model.User;
-import com.payspec.payspec.repository.UserRepository;
+import com.payspec.payspec.repository.BaseRepository;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.Repository;
 
 @Profile("spring-data-jpa")
-public interface SpringDataUserRepository extends UserRepository, Repository<User, Long> {
+public interface UserRepository extends BaseRepository<User, Long> {
 
    /* @Override
     @Query("SELECT DISTINCT customer FROM Customer customer left join fetch customer.pets WHERE customer.lastName LIKE :lastName%")

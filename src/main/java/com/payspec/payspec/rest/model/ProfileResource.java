@@ -1,3 +1,4 @@
+/*
 package com.payspec.payspec.rest.model;
 
 import com.payspec.payspec.domain.api.IProfile;
@@ -64,3 +65,4 @@ public class ProfileResource extends DefaultResource implements IProfile {
 	}
 
 }
+*/

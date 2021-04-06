@@ -20,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.payspec.payspec.domain.model.Good;
-import com.payspec.payspec.domain.model.User;
 import com.payspec.payspec.domain.enums.PaymentStatus;
 import com.payspec.payspec.domain.enums.PaymentType;
 
@@ -47,11 +46,11 @@ public abstract class AbstractPayment extends BaseEntity{
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "buyer_id")
-	protected User buyer;
+	protected AbstractUser buyer;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "seller")
-	protected User seller;
+	protected AbstractUser seller;
 
 	@Enumerated(EnumType.STRING)
 	protected PaymentStatus paymentStatus;
@@ -65,19 +64,19 @@ public abstract class AbstractPayment extends BaseEntity{
 			inverseJoinColumns = @JoinColumn(name="product_id"))
 	protected Collection<Good> products = new ArrayList<Good>();
 
-	public User getBuyer() {
+	public AbstractUser getBuyer() {
 		return buyer;
 	}
 
-	public void setBuyer(User buyer) {
+	public void setBuyer(AbstractUser buyer) {
 		this.buyer = buyer;
 	}
 
-	public User getSeller() {
+	public AbstractUser getSeller() {
 		return seller;
 	}
 
-	public void setSeller(User seller) {
+	public void setSeller(AbstractUser seller) {
 		this.seller = seller;
 	}
 

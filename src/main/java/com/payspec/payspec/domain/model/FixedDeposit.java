@@ -1,16 +1,19 @@
+/*
 package com.payspec.payspec.domain.model;
 
 import com.payspec.payspec.domain.AbstractAccount;
+import com.payspec.payspec.domain.User;
 import com.payspec.payspec.domain.api.IBankAccount;
+import com.payspec.payspec.domain.api.IUser;
 
 import java.util.Date;
 
 import javax.persistence.*;
 
 
-@Entity(name = "FixedDe[psit")
+@Entity(name = "FixedDeppsit")
 @DiscriminatorValue(value = "1")
-public class FixedDeposit extends AbstractAccount implements IBankAccount<User> {
+public class FixedDeposit extends AbstractAccount implements IBankAccount<IUser> {
 
 	@Override
     public String getAccountNumber() {
@@ -26,7 +29,12 @@ public class FixedDeposit extends AbstractAccount implements IBankAccount<User> 
         return user;
     }
 
-    public void setUser(User user) {
+	@Override
+	public void setUser(IUser iUser) {
+
+	}
+
+	public void setUser(User user) {
         this.user = user;
     }
 
@@ -111,3 +119,4 @@ public class FixedDeposit extends AbstractAccount implements IBankAccount<User> 
 	}
 
 }
+*/

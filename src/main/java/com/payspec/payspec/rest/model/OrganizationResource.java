@@ -1,3 +1,4 @@
+/*
 package com.payspec.payspec.rest.model;
 
 import com.payspec.payspec.domain.api.IOrganization;
@@ -64,3 +65,4 @@ public class OrganizationResource extends DefaultResource implements IOrganizati
 	}
 
 }
+*/

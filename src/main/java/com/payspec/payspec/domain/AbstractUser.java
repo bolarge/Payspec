@@ -11,9 +11,10 @@ import com.payspec.payspec.domain.model.Organization;
 import com.payspec.payspec.domain.model.Profile;
 import com.payspec.payspec.domain.enums.Gender;
 
-@Entity
+@Entity(name = "AbstractUser")
+@Table(name = "appuser")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type")
+@DiscriminatorColumn(name = "class")
 public abstract class AbstractUser extends BaseEntity{
 
 	@Column(name = "version")
@@ -42,7 +43,7 @@ public abstract class AbstractUser extends BaseEntity{
 	@Enumerated(EnumType.STRING)
 	protected Gender gender;
 
-	@Column(name = "password", length = 100)
+	@Column(name = "password", length = 999)
 	protected String password;
 
 	@Column(name="profile_pic")

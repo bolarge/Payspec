@@ -12,7 +12,7 @@ import com.payspec.payspec.domain.enums.Gender;
 import com.payspec.payspec.domain.api.IOrganization;
 
 @Entity(name = "User")
-@DiscriminatorValue(value = "1")
+@DiscriminatorValue(value = "USR")
 public class User extends AbstractUser implements IUser {
 
 	private String userType;
@@ -185,13 +185,11 @@ public class User extends AbstractUser implements IUser {
 		this.institution = institution;
 	}
 
-	public com.payspec.payspec.domain.model.Organization getOrganization() {
+	public Organization getOrganization() {
 		return organization;
 	}
 
-	public void setOrganization(IOrganization organization) { }
-
-	public void setOrganization(com.payspec.payspec.domain.model.Organization organization) {
+	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
 

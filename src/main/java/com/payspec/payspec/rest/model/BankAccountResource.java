@@ -1,3 +1,4 @@
+/*
 package com.payspec.payspec.rest.model;
 
 import com.payspec.payspec.domain.api.IBankAccount;
@@ -130,3 +131,4 @@ public class BankAccountResource extends DefaultResource implements IBankAccount
 	}
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.payspec.payspec.rest.model;
 
 import com.payspec.payspec.domain.api.IProduct;
@@ -60,3 +61,4 @@ public class ProductResource extends DefaultResource implements IProduct {
 	}
 
 }
+*/

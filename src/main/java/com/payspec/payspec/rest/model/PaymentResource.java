@@ -1,3 +1,4 @@
+/*
 package com.payspec.payspec.rest.model;
 
 import com.payspec.payspec.domain.api.IPayment;
@@ -19,8 +20,6 @@ public class PaymentResource extends DefaultResource implements IPayment, Payabl
 	private UserResource paychant;
 
 	private UserResource merchant;
-
-	//private PaymentStatus paymentStatus;
 
 
 	public PaymentResource() {
@@ -68,3 +67,4 @@ public class PaymentResource extends DefaultResource implements IPayment, Payabl
 		return null;
 	}
 }
+*/

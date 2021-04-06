@@ -7,7 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity(name = "Employee")
-@DiscriminatorValue(value = "2")
+@DiscriminatorValue(value = "EMP")
 public class Employee extends User {
 
 	@Column(name="employee_id", unique = true)
