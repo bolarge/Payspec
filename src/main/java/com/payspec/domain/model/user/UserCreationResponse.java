@@ -1,8 +1,8 @@
 package com.payspec.domain.model.user;
 
-import com.payspec.domain.model.organization.Identity;
+import com.payspec.domain.model.identity.BaseIdentity;
 
-public class UserCreationResponse extends Identity {
+public class UserCreationResponse extends BaseIdentity {
 
     protected String organizationID;
     protected String email;

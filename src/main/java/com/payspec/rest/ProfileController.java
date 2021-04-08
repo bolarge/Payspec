@@ -1,7 +1,6 @@
 package com.payspec.rest;
 
 import com.payspec.domain.model.authority.Profile;
-import com.payspec.domain.model.authority.Role;
 import com.payspec.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +31,7 @@ public class ProfileController {
         return new ResponseEntity<>(profileCollection, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Void> createRole(@RequestBody Profile profile){
         profile = profileService.saveProfile(profile);
         HttpHeaders responseHeaders = new HttpHeaders();

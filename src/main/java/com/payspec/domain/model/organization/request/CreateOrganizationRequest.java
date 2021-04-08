@@ -1,9 +1,9 @@
 package com.payspec.domain.model.organization.request;
 
-import com.payspec.domain.model.organization.Identity;
+import com.payspec.domain.model.identity.BaseIdentity;
 import com.payspec.domain.model.organization.registration.request.RegistrationRequest;
 
-public class CreateOrganizationRequest extends Identity {
+public class CreateOrganizationRequest extends BaseIdentity {
 
     private String name;
 

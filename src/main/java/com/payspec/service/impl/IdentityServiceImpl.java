@@ -1,7 +1,6 @@
 package com.payspec.service.impl;
 
-import com.payspec.domain.model.organization.Identity;
-import com.payspec.domain.model.user.UserIdentity;
+import com.payspec.domain.model.identity.UserIdentity;
 import com.payspec.repository.springdatajpa.IdentityRepository;
 import com.payspec.service.IdentityService;
 import org.springframework.beans.factory.annotation.Autowired;

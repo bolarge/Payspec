@@ -19,7 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.payspec.domain.model.organization.Identity;
+import com.payspec.domain.model.identity.BaseIdentity;
 import com.payspec.domain.model.product.Good;
 import com.payspec.domain.enums.PaymentStatus;
 import com.payspec.domain.enums.PaymentType;
@@ -29,7 +29,7 @@ import com.payspec.domain.model.user.AbstractUser;
 @Table(name = "payment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "p_type")
-public abstract class AbstractPayment extends Identity {
+public abstract class AbstractPayment extends BaseIdentity {
 
 	@Column(name = "payment_id")
 	protected String paymentId;

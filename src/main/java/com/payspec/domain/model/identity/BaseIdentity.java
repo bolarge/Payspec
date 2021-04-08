@@ -1,13 +1,14 @@
-package com.payspec.domain.model.organization;
+package com.payspec.domain.model.identity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.payspec.domain.api.IIdentity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-public class Identity {
+public class BaseIdentity implements IIdentity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -15,6 +16,12 @@ public class Identity {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "user_name")
+    private String userName;
+
+    @Column(name = "password", length = 999)
+    private String password;
 
     @Column(name="created")
     @Temporal(TemporalType.DATE)
@@ -26,10 +33,17 @@ public class Identity {
     @Column(name = "version")
     private int version;
 
-    public Identity() {}
+    public BaseIdentity() {}
 
-    public Identity(Long id) {
+    public BaseIdentity(Long id) {
         this.id = id;
+    }
+
+    public BaseIdentity(String userName){ this.userName = userName; }
+
+    public BaseIdentity(Long id, String userName){
+        this(id);
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -46,6 +60,22 @@ public class Identity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String username) {
+        this.userName = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @JsonIgnore

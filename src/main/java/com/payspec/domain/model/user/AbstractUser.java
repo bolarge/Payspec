@@ -6,6 +6,7 @@ import java.util.HashSet;
 
 import javax.persistence.*;
 
+import com.payspec.domain.model.identity.UserIdentity;
 import com.payspec.domain.model.organization.BaseEntity;
 import com.payspec.domain.model.payment.AbstractPayment;
 import com.payspec.domain.model.authority.Profile;

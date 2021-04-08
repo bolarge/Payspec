@@ -1,6 +1,6 @@
 package com.payspec.domain.model.user;
 
-import com.payspec.domain.model.organization.Identity;
+import com.payspec.domain.model.identity.BaseIdentity;
 import com.payspec.domain.model.organization.registration.request.RegistrationRequest;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UserCreationRequest extends Identity {
+public class UserCreationRequest extends BaseIdentity {
 
     protected String organizationID;
     protected String email;

@@ -1,6 +1,6 @@
 package com.payspec.service;
 
-import com.payspec.domain.model.user.UserIdentity;
+import com.payspec.domain.model.identity.UserIdentity;
 import org.springframework.dao.DataAccessException;
 
 import java.util.Collection;

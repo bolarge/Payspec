@@ -1,7 +1,5 @@
 package com.payspec.domain.model.organization;
 
-import com.payspec.domain.model.organization.Identity;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 

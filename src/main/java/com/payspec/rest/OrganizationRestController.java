@@ -1,6 +1,9 @@
 package com.payspec.rest;
 
+import com.payspec.domain.model.identity.OrganizationIdentity;
+import com.payspec.domain.model.identity.UserIdentity;
 import com.payspec.domain.model.organization.Organization;
+import com.payspec.service.IdentityService;
 import com.payspec.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +25,9 @@ public class OrganizationRestController {
     @Autowired
     private OrganizationService organizationService;
 
+    @Autowired
+	private IdentityService identityService;
+
     @RequestMapping(name = "", method = RequestMethod.GET)
     public ResponseEntity<Collection<Organization>> getAllOrganizations() {
 		Collection<Organization> organizationCollection = organizationService.findAllOrganizations();
@@ -33,9 +39,10 @@ public class OrganizationRestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Void> createOrganization(@RequestBody Organization organization) {
+		UserIdentity userIdentity = identityService.save(organization.getUserIdentity());
 		organization = organizationService.saveOrganization(organization);
 		HttpHeaders responseHeaders = new HttpHeaders();
-		URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(organization.getUserIdentity().getId()).toUri();
+		URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(organization.getId()).toUri();
 		responseHeaders.setLocation(newUserUri);
 
 		return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);

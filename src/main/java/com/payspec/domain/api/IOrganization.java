@@ -6,8 +6,4 @@ public interface IOrganization {
 
 	void setName(String name);
 
-	String getEmail();
-
-	void setEmail(String Email);
-
 }
