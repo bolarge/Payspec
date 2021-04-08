@@ -5,41 +5,13 @@ import java.util.Date;
 
 public interface IUser {
 
-	Long getId();
+    String getMiddleName();
 
-	void setId(Long id);
-
-	int getVersion();
-
-	void setVersion(int version);
-
-	String getLastName();
-
-	void setLastName(String lastName);
-
-	String getFirstName();
-
-	void setFirstName(String firstName);
+    void setMiddleName(String middleName);
 
 	Date getBirthDate();
 
 	void setBirthDate(Date birthDate);
-
-	String getEmail();
-
-	void setEmail(String email);
-
-	String getMiddleName();
-
-	void setMiddleName(String middleName);
-
-	String getUserName();
-
-	void setUserName(String userName);
-
-	String getPassword();
-
-	void setPassword(String password);
 
 	boolean isEnabled();
 

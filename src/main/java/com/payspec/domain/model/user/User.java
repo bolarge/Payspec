@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 import com.payspec.domain.model.organization.Institution;
 import com.payspec.domain.model.organization.Organization;
-import com.payspec.domain.model.organization.Profile;
+import com.payspec.domain.model.authority.Profile;
 import com.payspec.domain.api.IUser;
 import com.payspec.domain.enums.Gender;
 
@@ -32,30 +32,6 @@ public class User extends AbstractUser implements IUser {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
-	}
-
-	public String getUserName() {
-		return super.getUserName();
-	}
-
-	public void setUserName(String userName) {
-		super.setUserName(userName);
-	}
-
-	public String getEmail() {
-		return super.getEmail();
-	}
-
-	public void setEmail(String email) {
-		super.setEmail(email);
-	}
-
-	public String getPassword() {
-		return super.getPassword();
-	}
-
-	public void setPassword(String password) {
-		super.setPassword(password);
 	}
 
 	public Date getBirthDate() {

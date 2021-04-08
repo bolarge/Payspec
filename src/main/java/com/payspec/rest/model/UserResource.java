@@ -1,3 +1,4 @@
+/*
 package com.payspec.rest.model;
 
 import com.payspec.domain.api.IUser;
@@ -24,7 +25,7 @@ public class UserResource implements IUser {
     }
 
     public UserResource(IUser iUser) {
-        this.userName = iUser.getUserName();
+        this.userName = iUser.get;
         this.email = iUser.getEmail();
         this.gsmPhoneNumber = iUser.getGsmPhoneNumber();
         this.userType = iUser.getUserType();
@@ -238,3 +239,4 @@ public class UserResource implements IUser {
 		return null;
 	}
 }
+*/

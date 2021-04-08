@@ -6,8 +6,9 @@ import java.util.HashSet;
 
 import javax.persistence.*;
 
+import com.payspec.domain.model.organization.BaseEntity;
 import com.payspec.domain.model.payment.AbstractPayment;
-import com.payspec.domain.model.organization.Profile;
+import com.payspec.domain.model.authority.Profile;
 import com.payspec.domain.model.organization.Institution;
 import com.payspec.domain.model.organization.Organization;
 import com.payspec.domain.enums.Gender;
@@ -16,7 +17,10 @@ import com.payspec.domain.enums.Gender;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "class")
-public abstract class AbstractUser extends UserIdentity {
+public abstract class AbstractUser extends BaseEntity {
+
+	@OneToOne
+	private UserIdentity userIdentity;
 
 	@Column(name = "middle_name")
 	protected String middleName;
@@ -87,6 +91,14 @@ public abstract class AbstractUser extends UserIdentity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "seller", fetch = FetchType.LAZY)
     protected Collection<AbstractPayment> userReceipts = new HashSet<AbstractPayment>();
+
+	public UserIdentity getUserIdentity() {
+		return userIdentity;
+	}
+
+	public void setUserIdentity(UserIdentity userIdentity) {
+		this.userIdentity = userIdentity;
+	}
 
 	public String getMiddleName() {
 		return middleName;

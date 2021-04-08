@@ -46,7 +46,7 @@ public class CustomerRestController {
 
         // Set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
+        URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getUserIdentity().getId()).toUri();
         responseHeaders.setLocation(newUserUri);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);

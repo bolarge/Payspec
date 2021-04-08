@@ -8,11 +8,9 @@ import java.util.Optional;
 
 @NoRepositoryBean
 public interface BaseRepository<T extends AbstractUser> extends JpaRepository<T, Long> {
-//public interface BaseRepository<T, ID> extends JpaRepository<T, ID> {
 
-	T findByUserName(String username);
-
-	T findByEmail(String email);
+	//T findByUserName(String username);
+	//T findByEmail(String email);
 
 	Optional<T> findById(Long id);
 
