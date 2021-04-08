@@ -1,11 +1,12 @@
 package com.payspec.service;
 
-import com.payspec.domain.api.IProfile;
-import com.payspec.domain.api.IUser;
+import com.payspec.domain.model.authority.Profile;
+import org.springframework.dao.DataAccessException;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface ProfileService {
 
-	List<? extends IProfile> getByIUser(IUser iUser);
+	Collection<Profile> findAllProfiles()throws DataAccessException;
+	Profile saveProfile(Profile profile) throws DataAccessException;
 }
