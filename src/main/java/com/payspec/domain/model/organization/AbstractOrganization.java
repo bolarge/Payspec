@@ -1,14 +1,12 @@
 package com.payspec.domain.model.organization;
 
-import com.payspec.domain.BaseEntity;
-
 import javax.persistence.*;
 
 @Entity(name = "AbstractOrganization")
 @Table(name = "organizations")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "class")
-public class AbstractOrganization extends BaseEntity {
+public class AbstractOrganization extends Identity {
 
     @Column(name="name")
     protected String name;

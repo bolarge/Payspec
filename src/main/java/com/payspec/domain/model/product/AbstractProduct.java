@@ -1,6 +1,6 @@
 package com.payspec.domain.model.product;
 
-import com.payspec.domain.NamedEntity;
+import com.payspec.domain.model.organization.NamedEntity;
 import com.payspec.domain.model.organization.Organization;
 
 import java.util.HashSet;

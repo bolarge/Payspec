@@ -69,8 +69,6 @@ public interface IUser {
 
 	void setEmployeeId(String employeeId);
 
-	String toString();
-
 	String getBaseUrl();
 
 	void setBaseUrl(String url);

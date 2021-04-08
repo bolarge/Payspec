@@ -1,9 +1,9 @@
 package com.payspec.domain.model.organization.registration.response;
 
-import com.payspec.domain.BaseEntity;
+import com.payspec.domain.model.organization.Identity;
 import com.payspec.domain.model.organization.registration.request.RegistrationRequest;
 
-public class RegistrationResponse extends BaseEntity {
+public class RegistrationResponse extends Identity {
 
     private String organizationID;
     private String companyName;

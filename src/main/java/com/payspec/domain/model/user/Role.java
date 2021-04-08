@@ -1,6 +1,6 @@
 package com.payspec.domain.model.user;
 
-import com.payspec.domain.NamedEntity;
+import com.payspec.domain.model.organization.NamedEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

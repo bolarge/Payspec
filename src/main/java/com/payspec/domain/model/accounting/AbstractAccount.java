@@ -1,6 +1,6 @@
 package com.payspec.domain.model.accounting;
 
-import com.payspec.domain.BaseEntity;
+import com.payspec.domain.model.organization.Identity;
 import com.payspec.domain.model.user.AbstractUser;
 
 import java.util.Date;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "account")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "acc_type")
-public abstract class AbstractAccount extends BaseEntity {
+public abstract class AbstractAccount extends Identity {
 
 	@Column(name = "bvn", unique = true, nullable = false)
 	protected String bankVerificationNumber;
@@ -58,11 +58,11 @@ public abstract class AbstractAccount extends BaseEntity {
     }
 
 	public Long getId() {
-		return id;
+		return super.getId();
 	}
 
 	public void setId(Long accountId) {
-		this.id = accountId;
+		super.setId(accountId);
 	}
 
 	public AbstractUser getUser() {

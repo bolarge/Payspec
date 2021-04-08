@@ -1,7 +1,6 @@
 package com.payspec.domain.model.organization;
 
 import com.payspec.domain.model.user.AbstractUser;
-import com.payspec.domain.NamedEntity;
 import com.payspec.domain.model.user.Role;
 
 import java.util.Collection;

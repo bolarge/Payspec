@@ -7,7 +7,6 @@ import java.util.HashSet;
 import javax.persistence.*;
 
 import com.payspec.domain.model.payment.AbstractPayment;
-import com.payspec.domain.BaseEntity;
 import com.payspec.domain.model.organization.Profile;
 import com.payspec.domain.model.organization.Institution;
 import com.payspec.domain.model.organization.Organization;
@@ -17,16 +16,7 @@ import com.payspec.domain.enums.Gender;
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "class")
-public abstract class AbstractUser extends BaseEntity {
-
-	@Column(name = "version")
-	protected int version;
-
-	@Column(name = "last_name")
-	protected String lastName;
-
-	@Column(name = "first_name")
-	protected String firstName;
+public abstract class AbstractUser extends UserIdentity {
 
 	@Column(name = "middle_name")
 	protected String middleName;
@@ -35,18 +25,9 @@ public abstract class AbstractUser extends BaseEntity {
 	@Temporal(TemporalType.DATE)
 	protected Date birthDate;
 
-	@Column(name = "email")
-	protected String email;
-
-	@Column(name = "username")
-	protected String userName;
-
 	@Column(name = "gender")
 	@Enumerated(EnumType.STRING)
 	protected Gender gender;
-
-	@Column(name = "password", length = 999)
-	protected String password;
 
 	@Column(name="profile_pic")
 	protected String profilePicture = "/static/images/avatar.png";
@@ -76,11 +57,11 @@ public abstract class AbstractUser extends BaseEntity {
 	protected Date lastLogoutDate;
 
 	@ManyToOne(fetch =FetchType.EAGER)
-	@JoinColumn(name="institution_id")
+	@JoinColumn(name="institution_fk")
 	protected Institution institution;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="organization_id")
+    @JoinColumn(name="organization_fk")
 	protected Organization organization;
 
 	@Column(name = "gsm_number")
@@ -95,8 +76,6 @@ public abstract class AbstractUser extends BaseEntity {
 	@Column(name = "national_id")
 	protected String nationalId;
 
-	//Relationships
-
 	@ManyToMany(fetch=FetchType.EAGER, targetEntity = Profile.class)
 	@JoinTable(name = "user_profile",
 			joinColumns = { @JoinColumn(name = "user_id") },
@@ -108,30 +87,6 @@ public abstract class AbstractUser extends BaseEntity {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "seller", fetch = FetchType.LAZY)
     protected Collection<AbstractPayment> userReceipts = new HashSet<AbstractPayment>();
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
 
 	public String getMiddleName() {
 		return middleName;
@@ -149,38 +104,13 @@ public abstract class AbstractUser extends BaseEntity {
 		this.birthDate = birthDate;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
 	public Gender getGender() {
 		return gender;
 	}
 
-	/*public void setGender(Gender gender) {
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-*/
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public boolean isEnabled() {
 		return enabled;
 	}

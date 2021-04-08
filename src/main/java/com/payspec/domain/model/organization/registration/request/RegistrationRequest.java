@@ -1,8 +1,8 @@
 package com.payspec.domain.model.organization.registration.request;
 
-import com.payspec.domain.BaseEntity;
+import com.payspec.domain.model.organization.Identity;
 
-public class RegistrationRequest extends BaseEntity {
+public class RegistrationRequest extends Identity {
 
     protected String email;
 

@@ -1,6 +1,6 @@
 package com.payspec.domain.model.user;
 
-import com.payspec.domain.BaseEntity;
+import com.payspec.domain.model.organization.Identity;
 import com.payspec.domain.model.organization.registration.request.RegistrationRequest;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class UserCreationRequest extends BaseEntity {
+public class UserCreationRequest extends Identity {
 
     protected String organizationID;
     protected String email;
@@ -19,7 +19,6 @@ public class UserCreationRequest extends BaseEntity {
     protected String companyName;
     protected String password;
     protected String[] roles;
-
     protected boolean sendEmail = false;
     protected boolean userPresent = false;
 

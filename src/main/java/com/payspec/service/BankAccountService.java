@@ -1,17 +1,16 @@
 package com.payspec.service;
 
-import com.payspec.domain.exception.QuaspecServiceException;
 import com.payspec.domain.api.IBankAccount;
 
 import java.util.List;
 
 public interface BankAccountService {
 
-    List<? extends IBankAccount> getByIUser(String username) throws QuaspecServiceException;
+    List<? extends IBankAccount> getByIUser(String username);
 
-    IBankAccount createAccount(IBankAccount account) throws QuaspecServiceException;
+    IBankAccount createAccount(IBankAccount account);
 
-    void withdrawFromAccount(String accountNumber, double withdrawAmount) throws QuaspecServiceException;
+    void withdrawFromAccount(String accountNumber, double withdrawAmount);
 
     void transferFromAccount(String fromAccountNumber, String toAccountNumber, double transferAmount);
 
@@ -22,5 +21,4 @@ public interface BankAccountService {
 	IBankAccount deActivateBankAccount(String accountNumber);
 
 	void deActivateBankAccount(List<IBankAccount> account);
-
 }

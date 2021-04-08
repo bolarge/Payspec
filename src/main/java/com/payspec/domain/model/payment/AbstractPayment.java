@@ -19,7 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.payspec.domain.BaseEntity;
+import com.payspec.domain.model.organization.Identity;
 import com.payspec.domain.model.product.Good;
 import com.payspec.domain.enums.PaymentStatus;
 import com.payspec.domain.enums.PaymentType;
@@ -29,7 +29,7 @@ import com.payspec.domain.model.user.AbstractUser;
 @Table(name = "payment")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "p_type")
-public abstract class AbstractPayment extends BaseEntity {
+public abstract class AbstractPayment extends Identity {
 
 	@Column(name = "payment_id")
 	protected String paymentId;
@@ -137,36 +137,4 @@ public abstract class AbstractPayment extends BaseEntity {
 	public PaymentType getPaymentType() {
 		return paymentType;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((paymentId == null) ? 0 : paymentId.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AbstractPayment other = (AbstractPayment) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (paymentId == null) {
-			if (other.paymentId != null)
-				return false;
-		} else if (!paymentId.equals(other.paymentId))
-			return false;
-		return true;
-	}
-
 }

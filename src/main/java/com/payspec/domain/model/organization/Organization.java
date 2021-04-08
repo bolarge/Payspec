@@ -5,18 +5,9 @@ import com.payspec.domain.api.IOrganization;
 import javax.persistence.*;
 
 @Entity(name="Organization")
+@Table(name="Organizations")
 @DiscriminatorValue(value = "ORG")
-public class Organization implements IOrganization {
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public void setName(String name) {
-
-    }
+public class Organization extends NamedEntity implements IOrganization {
 
     @Override
     public String getEmail() {
