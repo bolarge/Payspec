@@ -7,7 +7,8 @@ import javax.persistence.*;
 
 @Entity(name="Organization")
 @Table(name="Organizations")
-public class Organization extends NamedEntity implements IOrganization {
+@DiscriminatorValue("OID")
+public class Organization extends AbstractOrganization implements IOrganization {
 
     @OneToOne
     private UserIdentity userIdentity;
