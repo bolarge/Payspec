@@ -7,13 +7,19 @@ import javax.persistence.MappedSuperclass;
 public class NamedEntity extends BaseEntity {
 
     @Column(name = "name")
-    private String name;
+    protected String name;
 
     @Column(name = "description")
-    private String description;
+    protected String description;
 
     @Column(name="status")
     protected boolean status = false;
+
+    public NamedEntity(){}
+
+    public NamedEntity(String name){
+        this.name = name;
+    }
 
     public String getName() {
         return this.name;

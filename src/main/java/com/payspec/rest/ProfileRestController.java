@@ -17,7 +17,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping(value = "api/profiles")
-public class ProfileController {
+public class ProfileRestController {
 
     @Autowired
     private ProfileService profileService;
